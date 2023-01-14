@@ -1,0 +1,30 @@
+### Install from GitHub
+
+Install the latest version from GitHub directly:
+```bash
+npm install git+https://github.com/alttiri/vue-file-input.git
+```
+
+Also, you can specify a semver with appending, for example, `#semver:0.0.3` to git-URL.
+
+The same by adding this line in `package.json`'s `dependencies` field:
+```json
+"@alttiri/base85": "github:alttiri/base85#semver:0.0.3"
+```
+
+
+### Usage
+
+```vue
+<template>
+  <FileInput :state="state"/>
+</template>
+
+<script setup>
+import {FileInput, getStateInstance} from "@alttiri/vue-file-input";
+
+const state = getStateInstance({recursive: true});
+globalThis.state = state;
+
+</script>
+```
