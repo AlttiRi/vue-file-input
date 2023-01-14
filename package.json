@@ -1,10 +1,10 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "name": "@alttiri/vue-file-input",
   "description": "",
   "license": "MIT",
-  "main": "./src/file-input/index.js",
+  "main": "./src/file-input/index.ts",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",

@@ -3,6 +3,9 @@
  * @typedef {"file" | "folder"} WebFileEntryTypeLike
  */
 
+/**
+ * WebFileEntry class.
+ */
 export class WebFileEntry {
     /**
      * @param {Object} init
