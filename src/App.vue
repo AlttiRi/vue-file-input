@@ -5,9 +5,9 @@
 </template>
 
 <script setup>
-import {FileInput, getStateInstance, FileInputFileInfo} from "./file-input/index";
+import {getStateInstance, FileInput, FileInputFileInfo} from "./file-input/index";
 // or
-// import {FileInput, getStateInstance, FileInputFileInfo} from "@alttiri/vue-file-input";
+// import {getStateInstance, FileInput, FileInputFileInfo} from "@alttiri/vue-file-input";
 
 
 const state = getStateInstance({recursive: true});
