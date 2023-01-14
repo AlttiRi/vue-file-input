@@ -17,7 +17,7 @@ The same by adding this line in `package.json`'s `dependencies` field:
 ```
 
 
-### Usage
+### Demo
 
 ```vue
 <template>
@@ -29,6 +29,6 @@ import {FileInput, getStateInstance} from "@alttiri/vue-file-input";
 
 const state = getStateInstance({recursive: true});
 globalThis.state = state;
-
 </script>
 ```
+This demo is online: https://alttiri.github.io/vue-file-input/
