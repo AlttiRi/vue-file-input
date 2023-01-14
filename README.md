@@ -13,7 +13,7 @@ Also, you can specify a semver with appending, for example, `#semver:0.0.3` to g
 
 The same by adding this line in `package.json`'s `dependencies` field:
 ```json
-"@alttiri/base85": "github:alttiri/base85#semver:0.0.3"
+"@alttiri/base85": "github:alttiri/base85#semver:0.0.5"
 ```
 
 
