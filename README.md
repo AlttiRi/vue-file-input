@@ -9,7 +9,7 @@ npm install git+https://github.com/alttiri/vue-file-input.git
 npm install git+https://github.com/alttiri/vue-file-input.git -save-dev
 ```
 
-Also, you can specify a semver with appending, for example, `#semver:0.0.3` to git-URL.
+Also, you can specify a semver with appending, for example, `#semver:0.0.5` to git-URL.
 
 The same by adding this line in `package.json`'s `dependencies` field:
 ```json
