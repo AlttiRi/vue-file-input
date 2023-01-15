@@ -30,10 +30,20 @@ export type FileInputState = {
     private: FileInputStatePrivate,
 }
 
-declare const nw: any
+declare const nw: any;
 const isNW: boolean = typeof nw !== "undefined" && nw["process"]?.["__nwjs"] === 1;
 
-export function getStateInstance({recursive} = {recursive: false}): FileInputState {
+function getLog(debug: boolean) {
+    if (debug) {
+        return (...args: any[]) => {
+            console.log(...args);
+        }
+    } else {
+        return () => {};
+    }
+}
+
+export function getStateInstance({recursive, debug} = {recursive: false, debug: false}): FileInputState {
     const fileEntries:  Ref<WebFileEntry[]>  = ref([]);
     const files:        Ref<File[]>          = ref([]);
     const inputElem:    Ref<HTMLFileInputElement | null> = ref(null);
@@ -45,23 +55,25 @@ export function getStateInstance({recursive} = {recursive: false}): FileInputSta
     const dropHoverTypes:     Ref<string[]>  = ref([]);
     const isNwDirectory:      Ref<boolean>   = ref(false);
 
+    const log = getLog(debug);
+
     watchEffect(async () => {
         const time: number = Date.now();
         parsing.value = true;
         if (dataTransfer.value) {
-            console.log("[fromDataTransferItems]");
+            log("[fromDataTransferItems]");
             fileEntries.value = await WebFileEntry.fromDataTransfer(dataTransfer.value, recursive);
         } else
         if (isNW && isNwDirectory.value) {
-            console.log("[isNwDirectory]");
+            log("[isNwDirectory]");
             fileEntries.value = WebFileEntry.fromFiles(files.value, "folder");
         } else {
-            console.log("[fromFiles]");
+            log("[fromFiles]");
             fileEntries.value = WebFileEntry.fromFiles(files.value);
         }
         parsing.value = false;
-        console.log("[WebFileEntry parsing][time]:", Date.now() - time, "ms");
-        console.log("[fileEntries]", toRaw(fileEntries.value));
+        log("[WebFileEntry parsing][time]:", Date.now() - time, "ms");
+        log("[fileEntries]", toRaw(fileEntries.value));
     });
 
     const file: ComputedRef<WebFileEntry> = computed(() => {
@@ -82,7 +94,7 @@ export function getStateInstance({recursive} = {recursive: false}): FileInputSta
 
         dropHoverItemCount.value = count;
         dropHoverTypes.value = types;
-        console.log("[setDataTransferHover]:", count, types);
+        log("[setDataTransferHover]:", count, types);
     }
     function resetDataTransferHover() {
         dropHoverItemCount.value = 0;
@@ -93,7 +105,7 @@ export function getStateInstance({recursive} = {recursive: false}): FileInputSta
         if (!dt) {
             return;
         }
-        console.log("setDataTransfer", dt);
+        log("setDataTransfer", dt);
         setFiles(dt.files, false);
         _setDtItems(dt.items);
         dataTransfer.value = dt;
@@ -101,7 +113,7 @@ export function getStateInstance({recursive} = {recursive: false}): FileInputSta
     function setFiles(filelist: FileList, resetDataTransfer: boolean = true) {
         const _files: File[] = [...filelist];
         files.value = _files;
-        console.log("[setFiles]:", _files);
+        log("[setFiles]:", _files);
         if (resetDataTransfer) {
             dataTransfer.value = null;
             dtItems.value = [];
@@ -110,8 +122,8 @@ export function getStateInstance({recursive} = {recursive: false}): FileInputSta
     function _setDtItems(items: DataTransferItemList) {
         const _dtItems: DataTransferItem[] = [...items];
         dtItems.value = _dtItems;
-        console.log("[_setDtItems]:", _dtItems); // bug in chromium: `type` and `kind` is "" in the console when expand the array.
-        console.log("[_setDtItems][0]:", {
+        log("[_setDtItems]:", _dtItems); // bug in chromium: `type` and `kind` is "" in the console when expand the array.
+        log("[_setDtItems][0]:", {
             kind: _dtItems[0].kind, type: _dtItems[0].type
         });
     }

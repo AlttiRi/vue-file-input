@@ -10,7 +10,7 @@ import {getStateInstance, FileInput, FileInputSelectedInfo} from "./file-input/i
 // import {getStateInstance, FileInput, FileInputSelectedInfo} from "@alttiri/vue-file-input";
 
 
-const state = getStateInstance({recursive: true});
+const state = getStateInstance({recursive: true, debug: true});
 globalThis.state = state;
 </script>
 
