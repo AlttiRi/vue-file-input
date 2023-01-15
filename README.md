@@ -6,7 +6,7 @@ npm install git+https://github.com/alttiri/vue-file-input.git
 ```
 
 ```bash
-npm install git+https://github.com/alttiri/vue-file-input.git -save-dev
+npm install git+https://github.com/alttiri/vue-file-input.git --save-dev
 ```
 
 Also, you can specify a semver with appending, for example, `#semver:0.0.5` to git-URL.
