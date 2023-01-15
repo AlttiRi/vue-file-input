@@ -1,13 +1,13 @@
 <template>
   <FileInput :state="state">
-    <template v-slot:selected><FileInputFileInfo :state="state"/></template>
+    <template v-slot:selected><FileInputSelectedInfo :state="state"/></template>
   </FileInput>
 </template>
 
 <script setup>
-import {getStateInstance, FileInput, FileInputFileInfo} from "./file-input/index";
+import {getStateInstance, FileInput, FileInputSelectedInfo} from "./file-input/index";
 // or
-// import {getStateInstance, FileInput, FileInputFileInfo} from "@alttiri/vue-file-input";
+// import {getStateInstance, FileInput, FileInputSelectedInfo} from "@alttiri/vue-file-input";
 
 
 const state = getStateInstance({recursive: true});
