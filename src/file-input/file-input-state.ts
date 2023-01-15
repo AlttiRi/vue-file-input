@@ -43,7 +43,20 @@ function getLog(debug: boolean) {
     }
 }
 
-export function getStateInstance({recursive, debug} = {recursive: false, debug: false}): FileInputState {
+type StateOpts = {
+    recursive?: boolean,
+    debug?:     boolean,
+}
+type StateOptsDefault = {
+    recursive: boolean,
+    debug:     boolean,
+}
+
+export function getStateInstance(opts: StateOpts = {}): FileInputState {
+    const defaultOpts: StateOptsDefault = {recursive: false, debug: false};
+    Object.assign(defaultOpts, opts);
+    const {recursive, debug} = defaultOpts;
+
     const fileEntries:  Ref<WebFileEntry[]>  = ref([]);
     const files:        Ref<File[]>          = ref([]);
     const inputElem:    Ref<HTMLFileInputElement | null> = ref(null);
