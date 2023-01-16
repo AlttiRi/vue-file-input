@@ -1,6 +1,6 @@
 {
   "name": "@alttiri/vue-file-input",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "type": "module",
   "description": "Vue.js file input with Drag and Drop support.",
   "homepage": "https://github.com/alttiri/vue-file-input",
