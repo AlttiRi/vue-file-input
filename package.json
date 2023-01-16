@@ -1,14 +1,30 @@
 {
-  "version": "0.2.1",
-  "type": "module",
   "name": "@alttiri/vue-file-input",
+  "version": "0.3.0",
+  "type": "module",
   "description": "Vue.js file input with Drag and Drop support.",
+  "homepage": "https://github.com/alttiri/vue-file-input",
   "license": "MIT",
   "main": "./src/file-input/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alttiri/vue-file-input.git"
+  },
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "#": "",
+    "publish-npm": "npm publish --registry=https://registry.npmjs.org",
+    "publish-ghp": "npm publish --registry=https://npm.pkg.github.com",
+    "##": "",
+    "unpublish-npm": "npm unpublish @alttiri/vue-file-input@1.2.3 --registry=https://registry.npmjs.org",
+    "###": "",
+    "login-npm": "npm login --registry=https://registry.npmjs.org",
+    "login-ghp": "npm login --registry=https://npm.pkg.github.com"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "3.2.0",

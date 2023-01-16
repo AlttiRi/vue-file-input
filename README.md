@@ -1,8 +1,8 @@
 # vue-file-input
 
-Vue.js file input with Drag and Drop support. Mostly for personal use.
+Vue.js file input with Drag and Drop support.
 
-### Install from GitHub
+Mostly for personal use.
 
 ### Demo
 
@@ -20,18 +20,63 @@ globalThis.state = state;
 ```
 This demo is online: https://alttiri.github.io/vue-file-input/
 
-Install the latest version from GitHub directly:
+
+## Installation
+
+### From NPM
+
+```bash
+npm install @alttiri/vue-file-input
+```
+
+### From GitHub repository
+
 ```bash
 npm install git+https://github.com/alttiri/vue-file-input.git
 ```
 
+<details>
+
+<summary>More ways</summary>
+
+### From GitHub repository (a specific version):
+
+- **Based on SemVer:**
+    ```bash
+    npm install git+https://github.com/alttiri/vue-file-input.git#semver:0.3.0
+    ```
+  Or add
+    ```
+    "@alttiri/vue-file-input": "github:alttiri/vue-file-input#semver:0.3.0"
+    ```
+  as `dependencies` in `package.json` file.
+
+  See available [tags](https://github.com/AlttiRi/vue-file-input/tags).
+
+- **Based on a commit hash:**
+    ```bash
+    npm install git+https://git@github.com/alttiri/vue-file-input.git#c98d3919e9002fa5738680a2c76004fd12746ce3
+    ```
+  Or add
+    ```
+    "@alttiri/vue-file-input": "github:alttiri/vue-file-input#c98d3919e9002fa5738680a2c76004fd12746ce3"
+    ```
+  as `dependencies` in `package.json` file.
+
+  See available [commits hashes](https://github.com/AlttiRi/vue-file-input/commits/master).
+
+
+### From GitHub Packages:
+To install you need first to create `.npmrc` file with `@alttiri:registry=https://npm.pkg.github.com` content:
 ```bash
-npm install git+https://github.com/alttiri/vue-file-input.git --save-dev
+echo @alttiri:registry=https://npm.pkg.github.com >> .npmrc
 ```
 
-Also, you can specify a semver with appending, for example, `#semver:0.0.5` to git-URL.
+only then run
 
-The same by adding this line in `package.json`'s `dependencies` field:
-```json
-"@alttiri/base85": "github:alttiri/base85#semver:0.0.5"
+```bash
+npm install @alttiri/vue-file-input
 ```
+Note, that GitHub Packages requires to have also `~/.npmrc` file (`.npmrc` in your home dir) with `//npm.pkg.github.com/:_authToken=TOKEN` content, where `TOKEN` is a token with the `read:packages` permission, take it here https://github.com/settings/tokens/new.
+
+</details>
