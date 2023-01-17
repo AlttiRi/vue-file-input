@@ -40,36 +40,26 @@ import {FileInputState, HTMLFileInputElement} from "./index";
 
 import {
   ref, toRefs, onMounted, computed, onBeforeUnmount, watchEffect,
-  PropType, Ref, ComputedRef
+  Ref, ComputedRef
 } from "vue";
 
 const templateInputElem: Ref<HTMLFileInputElement | null> = ref(null);
 
-const props = defineProps({
-  globalDropZone: {
-    type: Boolean,
-    default: true
-  },
-  dropZoneSelector: {
-    type: String,
-    default: null
-  },
-  accept: {
-    type: String,
-    default: "*/*"
-  },
-  multiple: {
-    type: Boolean,
-    default: true
-  },
-  state: {
-    type: Object as PropType<FileInputState>,
-    required: true
-  },
-  nwdirectory: {
-    type: Boolean,
-    default: false
-  }
+type IProps = {
+  state: FileInputState,
+  globalDropZone: boolean,
+  dropZoneSelector: string | null,
+  accept: string,
+  multiple: boolean,
+  nwdirectory: boolean,
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  globalDropZone: true,
+  dropZoneSelector: null,
+  accept: "*/*",
+  multiple: true,
+  nwdirectory: false,
 });
 
 const {
