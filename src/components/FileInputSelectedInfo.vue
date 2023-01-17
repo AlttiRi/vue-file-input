@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import {FileInputState} from "./index";
+import {FileInputState} from "../index.js";
 import {bytesToSizeWinLike, dateToDayDateTimeString} from "../util.js";
 
 const props = defineProps<{state: FileInputState}>();

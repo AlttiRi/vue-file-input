@@ -1,5 +1,5 @@
 import {computed, ComputedRef, DeepReadonly, readonly, Ref, ref, toRaw, watchEffect} from "vue";
-import {WebFileEntry} from "./index";
+import {WebFileEntry} from "../index.js";
 
 export interface HTMLFileInputElement extends HTMLInputElement {
     files: FileList; // Since `HTMLInputElement` has `FileList | null`

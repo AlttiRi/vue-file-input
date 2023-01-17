@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import {getStateInstance, FileInput, FileInputSelectedInfo} from "./file-input/index";
+import {getStateInstance, FileInput, FileInputSelectedInfo} from "../index.ts";
 // or
 // import {getStateInstance, FileInput, FileInputSelectedInfo} from "@alttiri/vue-file-input";
 
