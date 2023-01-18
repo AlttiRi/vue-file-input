@@ -13,5 +13,5 @@ export type {
 } from "./components/file-input-state";
 
 
-// deprecated
+// Deprecated. Use `FileInputSelectedInfo`.
 export {default as FileInputFileInfo} from "./components/FileInputSelectedInfo.vue";
