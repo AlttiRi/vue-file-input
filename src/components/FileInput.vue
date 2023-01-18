@@ -47,11 +47,11 @@ const templateInputElem: Ref<HTMLFileInputElement | null> = ref(null);
 
 type IProps = {
   state: FileInputState,
-  globalDropZone: boolean,
-  dropZoneSelector: string | null,
-  accept: string,
-  multiple: boolean,
-  nwdirectory: boolean,
+  globalDropZone?: boolean,
+  dropZoneSelector?: string | null,
+  accept?: string,
+  multiple?: boolean,
+  nwdirectory?: boolean,
 }
 
 const props = withDefaults(defineProps<IProps>(), {
