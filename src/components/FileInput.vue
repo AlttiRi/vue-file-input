@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import FileInputDefaultHoverText from "./FileInputDefaultHoverText.vue";
 import FileInputDefaultText      from "./FileInputDefaultText.vue";
-import {FileInputState, HTMLFileInputElement} from "../index.js";
+import {FileInputState, HTMLFileInputElement} from "../index";
 
 import {
   ref, toRefs, onMounted, computed, onBeforeUnmount, watchEffect,
