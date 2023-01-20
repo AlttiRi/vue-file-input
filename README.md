@@ -55,11 +55,11 @@ npm install git+https://github.com/alttiri/vue-file-input.git
 
 - **Based on a commit hash:**
     ```bash
-    npm install git+https://git@github.com/alttiri/vue-file-input.git#c1919e628aa30655e25b42859167cf04759a4fc5
+    npm install git+https://git@github.com/alttiri/vue-file-input.git#c69898556be0b92bee92b0b96249e5731a2fbf47
     ```
   Or add
     ```
-    "@alttiri/vue-file-input": "github:alttiri/vue-file-input#c1919e628aa30655e25b42859167cf04759a4fc5"
+    "@alttiri/vue-file-input": "github:alttiri/vue-file-input#c69898556be0b92bee92b0b96249e5731a2fbf47"
     ```
   as `dependencies` in `package.json` file.
 
