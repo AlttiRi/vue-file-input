@@ -43,11 +43,11 @@ npm install git+https://github.com/alttiri/vue-file-input.git
 
 - **Based on SemVer:**
     ```bash
-    npm install git+https://github.com/alttiri/vue-file-input.git#semver:1.2.0
+    npm install git+https://github.com/alttiri/vue-file-input.git#semver:1.3.0
     ```
   Or add
     ```
-    "@alttiri/vue-file-input": "github:alttiri/vue-file-input#semver:1.2.0"
+    "@alttiri/vue-file-input": "github:alttiri/vue-file-input#semver:1.3.0"
     ```
   as `dependencies` in `package.json` file.
 
