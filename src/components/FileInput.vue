@@ -101,8 +101,8 @@ const dropZone: ComputedRef<HTMLElement | null> = computed(() => {
   } else
   if (globalDropZone.value) {
     return document.body;
-  } else
-    return fileInputElem.value;
+  }
+  return fileInputElem.value;
 });
 
 onMounted(() => {
