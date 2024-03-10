@@ -6,7 +6,7 @@
 
     "target": "ES2020",
     "module": "ES2020",
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "bundler",
     "esModuleInterop":  true,
 
     "strictNullChecks": true,

@@ -1,6 +1,6 @@
 <template>
   <div
-      class="file-input"
+      class="file-input" data-comp="FileInput"
       ref="fileInputElem"
       :class="{'drop-hover': dropHover}"
       tabindex="0"
@@ -16,7 +16,7 @@
              ref="templateInputElem"
       >
 
-      <span class="content hover" v-if="dropHover">
+    <span class="content hover" v-if="dropHover">
       <slot name="hover"><FileInputDefaultHoverText :state="state"/></slot>
     </span>
       <span class="content selected" v-else-if="file && !parsing">
