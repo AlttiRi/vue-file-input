@@ -183,25 +183,35 @@ function onKeyDown(event: KeyboardEvent) {
 
 </script>
 
-<style lang="scss" scoped>
+<style>
+:root {
+  --drop-hover:        rgba(0,0,0,0.03);
+  --drop-active:       rgba(0,0,0,0.06);
+  --drop-file-hover:   rgba(0,0,0,0.06);
+  --file-input-border: rgba(0,0,0,0.6);
+}
+</style>
+
+<style scoped>
+.file-input, label, .content {
+  width: 100%;
+  height: 100%;
+}
+
 .file-input {
   transition: background-color 0.1s;
   border: solid 1px var(--file-input-border);
   box-sizing: border-box;
-  &.drop-hover {
-    background-color: var(--drop-file-hover);
-    transition: background-color 0.1s;
-  }
-  &:hover {
-    background-color: var(--drop-hover);
-  }
-  &:active {
-    background-color: var(--drop-active);
-  }
 }
-.file-input, label, .content {
-  width: 100%;
-  height: 100%;
+.file-input.drop-hover {
+  background-color: var(--drop-file-hover);
+  transition: background-color 0.1s;
+}
+.file-input:hover {
+  background-color: var(--drop-hover);
+}
+.file-input:active {
+  background-color: var(--drop-active);
 }
 
 .file-input-hover-modal {
@@ -215,9 +225,9 @@ function onKeyDown(event: KeyboardEvent) {
 
   transition: opacity 0.25s ease-out;
   opacity: 0;
-  &.drop-hover {
-    opacity: 1;
-  }
+}
+.file-input-hover-modal.drop-hover {
+  opacity: 1;
 }
 </style>
 
