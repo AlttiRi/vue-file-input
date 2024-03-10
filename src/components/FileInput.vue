@@ -1,38 +1,3 @@
-<template>
-  <div
-      class="file-input" data-comp="FileInput"
-      ref="fileInputElem"
-      :class="{'drop-hover': dropHover}"
-      tabindex="0"
-      @keydown="onKeyDown"
-  >
-    <label>
-      <input type="file"
-             :accept="accept"
-             :multiple="multiple"
-             @change="onFileInputChange"
-             style="display: none"
-             :nwdirectory="nwdirectory"
-             ref="templateInputElem"
-      >
-
-    <span class="content hover" v-if="dropHover">
-      <slot name="hover"><FileInputDefaultHoverText :state="state"/></slot>
-    </span>
-      <span class="content selected" v-else-if="file && !parsing">
-      <slot name="selected"><FileInputDefaultText :state="state"/></slot>
-    </span>
-      <span class="content prompt" v-else>
-      <slot name="prompt"><FileInputDefaultText :state="state"/></slot>
-    </span>
-
-    </label>
-    <teleport to="body">
-      <div class="file-input-hover-modal" :class="{'drop-hover': dropHover}"></div>
-    </teleport>
-  </div>
-</template>
-
 <script setup lang="ts">
 import FileInputDefaultHoverText from "./FileInputDefaultHoverText.vue";
 import FileInputDefaultText      from "./FileInputDefaultText.vue";
@@ -182,6 +147,41 @@ function onKeyDown(event: KeyboardEvent) {
 }
 
 </script>
+
+<template>
+  <div
+    class="file-input" data-comp="FileInput"
+    ref="fileInputElem"
+    :class="{'drop-hover': dropHover}"
+    tabindex="0"
+    @keydown="onKeyDown"
+  >
+    <label>
+      <input type="file"
+             :accept="accept"
+             :multiple="multiple"
+             @change="onFileInputChange"
+             style="display: none"
+             :nwdirectory="nwdirectory"
+             ref="templateInputElem"
+      >
+
+      <span class="content hover" v-if="dropHover">
+      <slot name="hover"><FileInputDefaultHoverText :state="state"/></slot>
+    </span>
+      <span class="content selected" v-else-if="file && !parsing">
+      <slot name="selected"><FileInputDefaultText :state="state"/></slot>
+    </span>
+      <span class="content prompt" v-else>
+      <slot name="prompt"><FileInputDefaultText :state="state"/></slot>
+    </span>
+
+    </label>
+    <teleport to="body">
+      <div class="file-input-hover-modal" :class="{'drop-hover': dropHover}"></div>
+    </teleport>
+  </div>
+</template>
 
 <style>
 :root {
