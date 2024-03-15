@@ -167,14 +167,14 @@ function onKeyDown(event: KeyboardEvent) {
       >
 
       <span class="content hover" v-if="dropHover">
-      <slot name="hover"><FileInputDefaultHoverText :state="state"/></slot>
-    </span>
-      <span class="content selected" v-else-if="file && !parsing">
-      <slot name="selected"><FileInputDefaultText :state="state"/></slot>
-    </span>
-      <span class="content prompt" v-else>
-      <slot name="prompt"><FileInputDefaultText :state="state"/></slot>
-    </span>
+        <slot name="hover"><FileInputDefaultHoverText :state="state"/></slot>
+      </span>
+        <span class="content selected" v-else-if="file && !parsing">
+        <slot name="selected"><FileInputDefaultText :state="state"/></slot>
+      </span>
+        <span class="content prompt" v-else>
+        <slot name="prompt"><FileInputDefaultText :state="state"/></slot>
+      </span>
 
     </label>
     <teleport to="body">
