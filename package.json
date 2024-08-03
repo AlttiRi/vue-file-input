@@ -30,10 +30,8 @@
     "access": "public"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "5.0.4",
-    "@vue/compiler-sfc": "3.4.21",
-    "terser": "5.29.1",
-    "vite": "5.1.5",
-    "vue": "3.4.21"
+    "@vitejs/plugin-vue": "5.1.2",
+    "vite": "5.3.5",
+    "vue": "3.4.35"
   }
 }
