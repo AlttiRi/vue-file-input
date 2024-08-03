@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import FileInputDefaultHoverText from "./FileInputDefaultHoverText.vue";
-import FileInputDefaultText      from "./FileInputDefaultText.vue";
-import {FileInputState, HTMLFileInputElement} from "../index";
-
 import {
   ref, toRefs, onMounted, computed, onBeforeUnmount, watchEffect,
   Ref, ComputedRef
 } from "vue";
+import {FileInputState, HTMLFileInputElement} from "../index";
+import FileInputDefault from "./FileInputDefault.vue";
+
 
 const templateInputElem: Ref<HTMLFileInputElement | null> = ref(null);
 
@@ -34,8 +33,6 @@ const {
 } = toRefs(props);
 
 const {
-  parsing,
-  file,
   dropHover,
   setFiles,
   setDataTransfer,
@@ -145,12 +142,11 @@ function onKeyDown(event: KeyboardEvent) {
     fileInputElem.value?.querySelector("label")?.click();
   }
 }
-
 </script>
 
 <template>
   <div
-    class="file-input" data-comp="FileInput"
+    class="file-input" data-component="FileInput"
     ref="fileInputElem"
     :class="{'drop-hover': dropHover}"
     tabindex="0"
@@ -165,20 +161,14 @@ function onKeyDown(event: KeyboardEvent) {
              :nwdirectory="nwdirectory"
              ref="templateInputElem"
       >
-
-      <span class="content hover" v-if="dropHover">
-        <slot name="hover"><FileInputDefaultHoverText :state="state"/></slot>
-      </span>
-        <span class="content selected" v-else-if="file && !parsing">
-        <slot name="selected"><FileInputDefaultText :state="state"/></slot>
-      </span>
-        <span class="content prompt" v-else>
-        <slot name="prompt"><FileInputDefaultText :state="state"/></slot>
-      </span>
-
+      <slot>
+        <FileInputDefault :state="state"/>
+      </slot>
     </label>
     <teleport to="body">
-      <div class="file-input-hover-modal" :class="{'drop-hover': dropHover}"></div>
+      <slot name="modal">
+        <div class="file-input-hover-modal" :class="{'drop-hover': dropHover}"></div>
+      </slot>
     </teleport>
   </div>
 </template>
@@ -193,8 +183,8 @@ function onKeyDown(event: KeyboardEvent) {
 </style>
 
 <style scoped>
-.file-input, label, .content {
-  width: 100%;
+.file-input {
+  width:  100%;
   height: 100%;
 }
 
@@ -230,13 +220,3 @@ function onKeyDown(event: KeyboardEvent) {
   opacity: 1;
 }
 </style>
-
-
-
-
-
-
-
-
-
-

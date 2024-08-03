@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import {computed} from "vue";
-import {FileInputState} from "../index";
+import {FileInputState, WebFileEntry} from "../index";
 
 const props = defineProps<{state: FileInputState}>();
 const {
@@ -18,13 +18,12 @@ const {
 } = props.state.private;
 
 const names = computed(() => {
-  /** @type {WebFileEntry[]} */
-  const entries = fileEntries.value;
+  const entries: WebFileEntry[] = fileEntries.value;
   return entries.slice(0, 50).map(file => file.name).join("\n");
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .default-prompt-text {
   width: inherit;
   height: inherit;
@@ -35,11 +34,13 @@ const names = computed(() => {
 
   cursor: pointer;
 
-  &:hover {
-    //text-decoration: underline;
-  }
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+/*
+.default-prompt-text:hover {
+  text-decoration: underline;
+}
+*/
 </style>
