@@ -5,6 +5,7 @@
       <span class="file-size" :title="file.size.toString()">{{bytesToSizeWinLike(file.size)}}</span>
       <span class="file-mtime" v-if="file.mtime">{{dateToDayDateTimeString(file.mtime, false)}}</span>
     </span>
+    <span v-else-if="state.private.dropHover.value">Drop it</span>
     <span v-else>No file selected</span>
   </span>
 </template>
