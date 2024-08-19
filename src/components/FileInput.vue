@@ -79,9 +79,11 @@ function initListeners() {
     return;
   }
   dropZone.value.addEventListener("dragenter", onDragEnter);
+  dropZone.value.addEventListener("dragenter", onDragOver);
+  dropZone.value.addEventListener("dragover",  onDragOver);
   dropZone.value.addEventListener("dragleave", onDragLeave);
   dropZone.value.addEventListener("drop",      onDrop);
-  dropZone.value.addEventListener("dragover",  onDragOver);
+  document.body.addEventListener("dragenter",  onDragOverNonDropZone);
   document.body.addEventListener("dragover",   onDragOverNonDropZone);
 }
 function removeListeners() {
@@ -89,9 +91,11 @@ function removeListeners() {
     return;
   }
   dropZone.value.removeEventListener("dragenter", onDragEnter);
+  dropZone.value.removeEventListener("dragenter", onDragOver);
+  dropZone.value.removeEventListener("dragover",  onDragOver);
   dropZone.value.removeEventListener("dragleave", onDragLeave);
   dropZone.value.removeEventListener("drop",      onDrop);
-  dropZone.value.removeEventListener("dragover",  onDragOver);
+  document.body.removeEventListener("dragenter",  onDragOverNonDropZone);
   document.body.removeEventListener("dragover",   onDragOverNonDropZone);
 }
 
@@ -113,6 +117,9 @@ function onDragOver(event: DragEvent) {
 }
 function onDragEnter(event: DragEvent) {
   stopEvent(event);
+  if (event.relatedTarget !== null) {
+    return;
+  }
   if (!dropHover.value) {
     dropHover.value = true;
   } else {
@@ -122,10 +129,11 @@ function onDragEnter(event: DragEvent) {
 }
 function onDragLeave(event: DragEvent) {
   stopEvent(event);
-  if (!dropZone.value?.contains(event.relatedTarget as Node)) {
-    dropHover.value = false;
-    resetDataTransferHover();
+  if (event.relatedTarget !== null) {
+    return;
   }
+  dropHover.value = false;
+  resetDataTransferHover();
 }
 
 function onDragOverNonDropZone(event: DragEvent) {
