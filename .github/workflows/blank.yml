@@ -1,3 +1,6 @@
+# Just grant "Read and write permissions" in "Workflow permissions" (/settings/actions) of your repo to make it working.
+# Then push it.
+# And select `gh-pages` branch in "GitHub Pages" - "Build and deployment" (/settings/pages) settings. That's all.
 name: GitHub Pages
 env:
   branch_name: gh-pages
@@ -11,16 +14,16 @@ jobs:
   Deploy: # Will copy `dist/*` files to `gh-pages` branch for deploying on GHP
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v4
         with:
-          node-version: "16"
-      - uses: actions/checkout@v2
+          node-version: "20"
+      - uses: actions/checkout@v4
       - name: Info
         run:  node -v && pwd && ls -la
       - name: Create Git user
         run:  git config --global user.email "${{github.actor}}@users.noreply.github.com" && git config --global user.name "${{github.actor}}"
       - name: Github NPM log in
-        run:  echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc  
+        run:  echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
       - name: Init && Build
         run:  npm ci && npm run build
       - name: Init Git
