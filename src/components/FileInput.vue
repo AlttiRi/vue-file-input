@@ -234,6 +234,7 @@ function onKeyDown(event: KeyboardEvent) {
 
 label {
   display: flex;
+  place-content: center;
   width: 100%;
   height: 100%;
 }
