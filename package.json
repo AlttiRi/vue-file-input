@@ -1,6 +1,6 @@
 {
   "name": "@alttiri/vue-file-input",
-  "version": "1.4.1-20240819",
+  "version": "1.4.2-20240819",
   "type": "module",
   "description": "Vue.js file input with Drag and Drop support.",
   "homepage": "https://github.com/alttiri/vue-file-input",
@@ -14,9 +14,9 @@
     "src"
   ],
   "scripts": {
-    "vue-dev":   "vite --host",
-    "vue-build": "vite build",
-    "vue-serve": "vite preview",
+    "dev":   "vite --host",
+    "build": "vite build",
+    "serve": "vite preview",
     "#": "",
     "test-publish": "npm pack",
     "publish-npm":  "npm publish --registry=https://registry.npmjs.org",

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <span class="content hover" v-if="state.private.dropHover">
+    <span class="content hover" v-if="state.private.dropHover.value">
       <slot name="hover">
         <FileInputDefaultHoverText :state="state"/>
       </slot>
     </span>
-    <span class="content selected" v-else-if="state.private.file && !state.private.parsing">
+    <span class="content selected" v-else-if="state.private.file.value && !state.private.parsing.value">
       <slot name="selected">
         <FileInputDefaultText :state="state"/>
       </slot>
