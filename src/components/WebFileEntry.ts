@@ -12,12 +12,12 @@ type WebFileEntryConstructorInit = {
 };
 
 export class WebFileEntry {
-    private readonly file: FileWithPath | File;
-    private readonly type: WebFileEntryType;
-    private readonly parent: WebFileEntry | undefined;
+    public readonly   file: FileWithPath | File;
+    public readonly   type: WebFileEntryType;
+    public readonly parent: WebFileEntry   | undefined;
+    public        children: WebFileEntry[] | undefined;
     private readonly _name: string | undefined;
-    private children: WebFileEntry[] | undefined;
-    private _contentSize: number | undefined;
+    private   _contentSize: number | undefined;
     constructor({file, type, name, parent}: WebFileEntryConstructorInit) {
         this.file = file;
         this.type = type;
