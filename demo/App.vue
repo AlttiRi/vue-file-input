@@ -2,7 +2,7 @@
   <!-- just for tests -->
   <video src="#" style="background-color: aqua"> TEST </video>
 
-  <FileInput :state="state" :global-drop-zone="true">
+  <FileInput :state="state" :global-drop-zone="false">
 <!--    <FileInputSelectedInfo :state="state"/>-->
   </FileInput>
 

@@ -117,7 +117,7 @@ function onDragOver(event: DragEvent) {
 }
 function onDragEnter(event: DragEvent) {
   stopEvent(event);
-  if (event.relatedTarget !== null) {
+  if (globalDropZone.value && event.relatedTarget !== null) {
     return;
   }
   if (!dropHover.value) {
@@ -129,7 +129,11 @@ function onDragEnter(event: DragEvent) {
 }
 function onDragLeave(event: DragEvent) {
   stopEvent(event);
-  if (event.relatedTarget !== null) {
+  if (globalDropZone.value) {
+    if (event.relatedTarget !== null) {
+      return;
+    }
+  } else if (dropHover.value && dropZone.value?.contains(event.relatedTarget as Node)) {
     return;
   }
   dropHover.value = false;
