@@ -231,4 +231,14 @@ function onKeyDown(event: KeyboardEvent) {
 .file-input-hover-modal.drop-hover {
   opacity: 1;
 }
+
+label {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+[tabindex]:focus {
+  outline: none;
+  box-shadow: 0 0 2px grey;
+}
 </style>
