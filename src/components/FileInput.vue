@@ -3,7 +3,8 @@ import {
   ref, toRefs, onMounted, computed, onBeforeUnmount, watchEffect,
   Ref, ComputedRef
 } from "vue";
-import FileInputDefault from "./FileInputDefault.vue";
+import FileInputDefault           from "./FileInputDefault.vue";
+import FileInputDefaultHoverModal from "./FileInputDefaultHoverModal.vue";
 import {FileInputState, HTMLFileInputElement} from "../index.ts";
 
 
@@ -169,7 +170,6 @@ function onKeyDown(event: KeyboardEvent) {
              :accept="accept"
              :multiple="multiple"
              @change="onFileInputChange"
-             style="display: none"
              :nwdirectory="nwdirectory"
              ref="templateInputElem"
       >
@@ -179,7 +179,7 @@ function onKeyDown(event: KeyboardEvent) {
     </label>
     <teleport to="body">
       <slot name="modal">
-        <div class="file-input-hover-modal" :class="{'drop-hover': dropHover}"></div>
+        <FileInputDefaultHoverModal :state="state"/>
       </slot>
     </teleport>
   </div>
@@ -195,6 +195,10 @@ function onKeyDown(event: KeyboardEvent) {
 </style>
 
 <style scoped>
+input {
+  display: none;
+}
+
 .file-input {
   width:  100%;
   height: 100%;
@@ -214,22 +218,6 @@ function onKeyDown(event: KeyboardEvent) {
 }
 .file-input:active {
   background-color: var(--drop-active);
-}
-
-.file-input-hover-modal {
-  height: 50px;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  pointer-events: none;
-  background-image: linear-gradient(to top, rgba(0,0,0,0.15), rgba(0,0,0,0.005));
-
-  transition: opacity 0.25s ease-out;
-  opacity: 0;
-}
-.file-input-hover-modal.drop-hover {
-  opacity: 1;
 }
 
 label {
