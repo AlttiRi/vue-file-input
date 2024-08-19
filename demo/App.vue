@@ -1,6 +1,6 @@
 <template>
   <!-- just for tests -->
-  <video src="." style="background-color: aqua"> TEST </video>
+  <video src="#" style="background-color: aqua"> TEST </video>
 
   <FileInput :state="state">
     <FileInputSelectedInfo :state="state"/>
