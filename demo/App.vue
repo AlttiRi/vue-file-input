@@ -1,13 +1,14 @@
 <template>
+  <!-- just for tests -->
+  <video src="." style="background-color: aqua"> TEST </video>
+
   <FileInput :state="state">
-    <template v-slot:selected>
-      <FileInputSelectedInfo :state="state"/>
-    </template>
+    <FileInputSelectedInfo :state="state"/>
   </FileInput>
 </template>
 
 <script setup>
-import {getStateInstance, FileInput, FileInputSelectedInfo} from "/src/index";
+import {getStateInstance, FileInput, FileInputSelectedInfo} from "../src/index.ts";
 // or
 // import {getStateInstance, FileInput, FileInputSelectedInfo} from "@alttiri/vue-file-input";
 

@@ -3,15 +3,15 @@ export {default as FileInputDefaultText}      from "./components/FileInputDefaul
 export {default as FileInputDefaultHoverText} from "./components/FileInputDefaultHoverText.vue";
 export {default as FileInputSelectedInfo}     from "./components/FileInputSelectedInfo.vue";
 
-export {WebFileEntry} from "./components/WebFileEntry";
+// Deprecated. Use `FileInputSelectedInfo`.
+export {default as FileInputFileInfo} from "./components/FileInputSelectedInfo.vue";
 
-export {getStateInstance} from "./components/file-input-state";
+
+export {WebFileEntry}     from "./components/WebFileEntry.ts";
+
+export {getStateInstance} from "./components/file-input-state.ts";
 export type {
     HTMLFileInputElement,
     FileInputState,
     FileInputStatePrivate
-} from "./components/file-input-state";
-
-
-// Deprecated. Use `FileInputSelectedInfo`.
-export {default as FileInputFileInfo} from "./components/FileInputSelectedInfo.vue";
+} from "./components/file-input-state.ts";

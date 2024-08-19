@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import {FileInputState} from "../index";
 import {bytesToSizeWinLike, dateToDayDateTimeString} from "@alttiri/util-js";
+import {FileInputState} from "../index.ts";
 
 const props = defineProps<{state: FileInputState}>();
 const {

@@ -3,8 +3,8 @@ import {
   ref, toRefs, onMounted, computed, onBeforeUnmount, watchEffect,
   Ref, ComputedRef
 } from "vue";
-import {FileInputState, HTMLFileInputElement} from "../index";
 import FileInputDefault from "./FileInputDefault.vue";
+import {FileInputState, HTMLFileInputElement} from "../index.ts";
 
 
 const templateInputElem: Ref<HTMLFileInputElement | null> = ref(null);

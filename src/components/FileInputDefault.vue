@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import FileInputDefaultHoverText from "./FileInputDefaultHoverText.vue";
 import FileInputDefaultText      from "./FileInputDefaultText.vue";
-import {FileInputState} from "./file-input-state";
+import {FileInputState} from "./file-input-state.ts";
 
 defineProps<{
   state: FileInputState,
