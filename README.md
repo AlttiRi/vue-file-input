@@ -1,4 +1,4 @@
-# vue-file-input
+# [vue-file-input](https://github.com/AlttiRi/vue-file-input)
 
 Vue.js file input with Drag and Drop support.
 
