@@ -128,6 +128,9 @@ export class WebFileEntry {
 }
 
 async function fromFileSystemEntry(fsEntry: FileSystemEntry, parent: WebFileEntry | undefined, recursive = false, file: File): Promise<WebFileEntry | null> {
+    if (fsEntry === null) { // drop from long path
+        console.error("[fromFileSystemEntry][error] FileSystemEntry is null", file);
+    }
     if (fsEntry.isFile) {
         try {
             const file = await toFile(fsEntry as FileSystemFileEntry); // as
