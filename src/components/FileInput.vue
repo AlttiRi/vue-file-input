@@ -12,7 +12,7 @@ const templateInputElem: Ref<HTMLFileInputElement | null> = ref(null);
 
 type IProps = {
   state: FileInputState,
-  globalDropZone?: boolean,
+  globalDropZone?: boolean | null,
   dropZoneSelector?: string | null,
   accept?: string,
   multiple?: boolean,
@@ -20,7 +20,7 @@ type IProps = {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  globalDropZone: true,
+  globalDropZone: null,
   dropZoneSelector: null,
   accept: "*/*",
   multiple: true,
@@ -51,6 +51,16 @@ onMounted(() => {
   inputElem.value = templateInputElem.value;
 });
 
+const globalDropZoneEx = computed(() => {
+  if (dropZoneSelector.value) {
+    return false;
+  }
+  if (globalDropZone.value === null) {
+    return true;
+  }
+  return globalDropZone.value;
+});
+
 function onFileInputChange(event: Event) {
   const fileElem = event.target as HTMLFileInputElement;
   setFiles(fileElem.files);
@@ -62,7 +72,7 @@ const dropZone: ComputedRef<HTMLElement | null> = computed(() => {
   if (dropZoneSelector.value) {
     return document.querySelector(dropZoneSelector.value);
   } else
-  if (globalDropZone.value) {
+  if (globalDropZoneEx.value) {
     return document.body;
   }
   return fileInputElem.value;
@@ -118,7 +128,7 @@ function onDragOver(event: DragEvent) {
 }
 function onDragEnter(event: DragEvent) {
   stopEvent(event);
-  if (globalDropZone.value && event.relatedTarget !== null) {
+  if (globalDropZoneEx.value && event.relatedTarget !== null) {
     return;
   }
   if (!dropHover.value) {
@@ -130,7 +140,7 @@ function onDragEnter(event: DragEvent) {
 }
 function onDragLeave(event: DragEvent) {
   stopEvent(event);
-  if (globalDropZone.value) {
+  if (globalDropZoneEx.value) {
     if (event.relatedTarget !== null) {
       return;
     }
