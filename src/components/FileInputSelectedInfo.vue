@@ -2,7 +2,7 @@
   <span data-component="FileInputSelectedInfo">
     <span class="file-info" v-if="file">
       <span class="file-name" :title="file.name">{{file.name}}</span>
-      <span class="file-size" :title="file.size.toString()">{{bytesToSizeWinLike(file.size)}}</span>
+      <span class="file-size" :title="file.size.toString()">{{formatFileSizeWinLike(file.size)}}</span>
       <span class="file-mtime" v-if="file.mtime">{{dateToDayDateTimeString(file.mtime, false)}}</span>
     </span>
     <span v-else-if="state.private.dropHover.value">Drop it</span>
@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import {bytesToSizeWinLike, dateToDayDateTimeString} from "@alttiri/util-js";
+import {formatFileSizeWinLike, dateToDayDateTimeString} from "@alttiri/util-js";
 import {FileInputState} from "../index.ts";
 
 const props = defineProps<{state: FileInputState}>();
