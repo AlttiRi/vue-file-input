@@ -20,7 +20,7 @@ type IProps = {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  globalDropZone: null,
+  globalDropZone: null, // todo: just use `true`?
   dropZoneSelector: null,
   accept: "*/*",
   multiple: true,
@@ -180,7 +180,7 @@ function onKeyDown(event: KeyboardEvent) {
              :accept="accept"
              :multiple="multiple"
              @change="onFileInputChange"
-             :nwdirectory="nwdirectory"
+             :nwdirectory="nwdirectory ? '' : undefined"
              ref="templateInputElem"
       >
       <slot>
