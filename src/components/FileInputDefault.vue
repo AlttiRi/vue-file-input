@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="c-FileInputDefault" data-component="FileInputDefault">
     <span class="content hover" v-if="state.private.dropHover.value">
       <slot name="hover">
         <FileInputDefaultHoverText :state="state"/>

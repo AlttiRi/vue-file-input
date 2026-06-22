@@ -169,11 +169,12 @@ function onKeyDown(event: KeyboardEvent) {
 
 <template>
   <div
-    class="file-input" data-component="FileInput"
     ref="fileInputElem"
+    class="c-FileInput"
     :class="{'drop-hover': dropHover}"
     tabindex="0"
     @keydown="onKeyDown"
+    data-component="FileInput"
   >
     <label>
       <input type="file"
@@ -209,35 +210,31 @@ input {
   display: none;
 }
 
-.file-input {
+.c-FileInput {
   width:  100%;
   height: 100%;
 }
 
-.file-input {
+.c-FileInput {
   transition: background-color 0.1s;
   border: solid 1px var(--file-input-border);
   box-sizing: border-box;
 }
-.file-input.drop-hover {
+.c-FileInput.drop-hover {
   background-color: var(--drop-file-hover);
   transition: background-color 0.1s;
 }
-.file-input:hover {
+.c-FileInput:hover {
   background-color: var(--drop-hover);
 }
-.file-input:active {
+.c-FileInput:active {
   background-color: var(--drop-active);
 }
 
-label {
-  display: flex;
-  place-content: center;
-  width: 100%;
-  height: 100%;
-}
 [tabindex]:focus {
   outline: none;
+}
+[tabindex]:focus-visible {
   box-shadow: 0 0 2px grey;
 }
 </style>

@@ -8,16 +8,16 @@ defineProps<{
 
 <template>
   <div
-      data-component="FileInputDefaultHoverModal"
-      class="file-input-hover-modal"
+      class="c-FileInputDefaultHoverModal"
       :class="{'drop-hover': state.private.dropHover.value}"
+      data-component="FileInputDefaultHoverModal"
   >
     <div class="bottom-shadow"></div>
   </div>
 </template>
 
 <style scoped>
-.file-input-hover-modal {
+.c-FileInputDefaultHoverModal {
   height: 100%;
   width: 100%;
   position: fixed;
@@ -25,10 +25,10 @@ defineProps<{
   transition: opacity 0.25s ease-out;
   opacity: 0;
 }
-.file-input-hover-modal.drop-hover {
+.c-FileInputDefaultHoverModal.drop-hover {
   opacity: 1;
 }
-.file-input-hover-modal .bottom-shadow {
+.c-FileInputDefaultHoverModal .bottom-shadow {
   position: fixed;
   bottom: 0;
   left: 0;

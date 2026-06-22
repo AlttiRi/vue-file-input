@@ -1,5 +1,6 @@
 <template>
-  <div class="default-hover-text">{{text}}</div>
+  <div class="c-FileInputDefaultHoverText" data-component="FileInputDefaultHoverText"
+  >{{text}}</div>
 </template>
 
 <script setup lang="ts">
@@ -18,7 +19,7 @@ const text = computed(() => {
 </script>
 
 <style scoped>
-.default-hover-text {
+.c-FileInputDefaultHoverText {
   width: 100%;
   height: 100%;
   display: flex;

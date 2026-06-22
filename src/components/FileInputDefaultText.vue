@@ -1,5 +1,7 @@
 <template>
-  <div class="default-prompt-text" :title="names">
+  <div class="c-FileInputDefaultText"
+       :title="names" data-component="FileInputDefaultText"
+  >
     <div class="parsing" v-if="parsing">Parsing...</div>
     <div v-else-if="count">{{count}} file{{count > 1 ? "s" : ""}}</div>
     <div v-else style="display: contents">
@@ -24,7 +26,7 @@ const names = computed(() => {
 </script>
 
 <style scoped>
-.default-prompt-text {
+.c-FileInputDefaultText {
   width: inherit;
   height: inherit;
   max-width: 100%;
@@ -39,7 +41,7 @@ const names = computed(() => {
   text-overflow: ellipsis;
 }
 /*
-.default-prompt-text:hover {
+.c-FileInputDefaultText:hover {
   text-decoration: underline;
 }
 */

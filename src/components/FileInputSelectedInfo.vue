@@ -1,5 +1,5 @@
 <template>
-  <span data-component="FileInputSelectedInfo">
+  <span class="c-FileInputSelectedInfo" data-component="FileInputSelectedInfo">
     <span class="file-info" v-if="file">
       <span class="file-name" :title="file.name">{{file.name}}</span>
       <span class="file-size" :title="file.size.toString()">{{formatFileSizeWinLike(file.size)}}</span>
@@ -21,6 +21,13 @@ const {
 </script>
 
 <style scoped>
+.c-FileInputSelectedInfo {
+  display: flex;
+  place-content: center;
+  width: 100%;
+  height: 100%;
+}
+
 .file-info {
   width: 100%;
   height: 100%;
