@@ -1,34 +1,52 @@
 <template>
-  <!-- just for tests -->
-  <video src="#" style="background-color: aqua"> TEST </video>
+  <div class="c-App" data-component="App">
+    <label>
+      <input type="radio" name="demo" value="demo-1" v-model="selectedDemo">
+      <span>Demo1</span>
+    </label>
+    |
+    <label>
+      <input type="radio" name="demo" value="demo-2" v-model="selectedDemo">
+      <span>Demo2</span>
+    </label>
+    <hr>
 
-  <!--<FileInput :state="state" :drop-zone-selector="'#app'">-->
-  <FileInput :state="state" :global-drop-zone="true">
-    <FileInputSelectedInfo :state="state"/>
-  </FileInput>
+    <Demo1 v-if="selectedDemo === 'demo-1'"/>
+    <Demo2 v-if="selectedDemo === 'demo-2'"/>
 
-  <div class="files">
-    <div>Files:</div>
-    <div v-for="e of state.fileEntries.value">{{e.name}} — {{formatSizeWinLike(e.size)}}</div>
+    <a class="readme" title="Open Readme" href="https://github.com/AlttiRi/vue-file-input" target="_blank"><i>i</i></a>
   </div>
-
-  <a class="readme" title="Open Readme" href="https://github.com/AlttiRi/vue-file-input" target="_blank"><i>i</i></a>
 </template>
 
 <script setup>
-import {formatSizeWinLike} from "@alttiri/util-js";
-import {getStateInstance, FileInput, FileInputSelectedInfo} from "../src/index.ts";
-// or
-// import {getStateInstance, FileInput, FileInputSelectedInfo} from "@alttiri/vue-file-input";
+import Demo1 from "./Demo1.vue";
+import Demo2 from "./Demo2.vue";
+import {ref} from "vue";
 
-
-const state = getStateInstance({recursive: true, debug: true});
-globalThis.state = state;
+const selectedDemo = ref("demo-1");
 </script>
 
-<style>
-.files {
-  padding: 6px 0;
+<style scoped>
+.c-App {
+  padding: 20px;
+  border: 1px solid #ccc;
+
+  width: 100%;
+  max-width: 100vw;
+  min-width: 320px;
+
+  min-height: 480px;
+  align-self: start;
+  margin-top: 20px;
+}
+
+@media (min-width: 720px) {
+  .c-App {
+    min-width: 480px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .readme {
