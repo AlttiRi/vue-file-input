@@ -11,6 +11,7 @@ export default defineConfig({
   },
   esbuild: {
     target: "es2021",
+    minifyIdentifiers: false
   },
   build: {
     target: "es2020",
