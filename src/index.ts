@@ -5,7 +5,7 @@ export {default as FileInputDefaultText}       from "./components/FileInputDefau
 export {default as FileInputDefaultHoverText}  from "./components/FileInputDefaultHoverText.vue";
 export {default as FileInputSelectedInfo}      from "./components/FileInputSelectedInfo.vue";
 
-// Deprecated. Use `FileInputSelectedInfo`.
+/** @deprecated Use `FileInputSelectedInfo`. */ // todo: remove
 export {default as FileInputFileInfo}          from "./components/FileInputSelectedInfo.vue";
 
 

@@ -1,6 +1,8 @@
 import {computed, ComputedRef, DeepReadonly, readonly, Ref, ref, toRaw, watchEffect} from "vue";
 import {WebFileEntry} from "../index.ts";
+import {cssText} from "./core.ts";
 
+/** Type for `input` element with exactly `[type="file"]`. */
 export interface HTMLFileInputElement extends HTMLInputElement {
     files: FileList; // Since `HTMLInputElement` has `FileList | null`
 }
@@ -21,12 +23,15 @@ export type FileInputStatePrivate = {
     setDataTransfer(dt: DataTransfer | null): void,
     setFiles(filelist: FileList, resetDataTransfer?: boolean): void,
 
-    isNwDirectory: Ref<boolean>,
+    isNwDirectory: Ref<boolean>, // for NW.js development
 }
 
 export type FileInputState = {
+    /** Readonly `Ref` list of `WebFileEntry` items. */
     fileEntries: DeepReadonly<Ref<WebFileEntry[]>>,
+    /** Clear file selecting. */
     clearInput(): void,
+    /** Things for advanced use. */
     private: FileInputStatePrivate,
 }
 
@@ -35,21 +40,21 @@ const isNW: boolean = typeof nw !== "undefined" && nw["process"]?.["__nwjs"] ===
 
 function getLog(debug: boolean) {
     if (debug) {
-        return (...args: any[]) => {
-            console.log(...args);
-        }
+        return console.log.bind(console, "%c[FileInput]", cssText);
     } else {
         return () => {};
     }
 }
 
 type StateOpts = {
+    /** Enable listing files from subfolders. `false` by default. */
     recursive?: boolean,
+    /** Enable debug console log. `false` by default. */
     debug?:     boolean,
 }
 type StateOptsDefault = {
-    recursive: boolean,
-    debug:     boolean,
+    recursive: false,
+    debug:     false,
 }
 
 export function getStateInstance(opts: StateOpts = {}): FileInputState {
@@ -75,7 +80,7 @@ export function getStateInstance(opts: StateOpts = {}): FileInputState {
         parsing.value = true;
         if (dataTransfer.value) {
             log("[fromDataTransferItems]");
-            fileEntries.value = await WebFileEntry.fromDataTransfer(dataTransfer.value, recursive);
+            fileEntries.value = await WebFileEntry.fromDataTransfer(dataTransfer.value, recursive, debug);
         } else
         if (isNW && isNwDirectory.value) {
             log("[isNwDirectory]");

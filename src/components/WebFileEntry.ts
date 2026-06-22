@@ -1,3 +1,5 @@
+import {cssText} from "./core.ts";
+
 export type WebFileEntryType = "file" | "folder";
 
 export interface FileWithPath extends File {
@@ -96,18 +98,20 @@ export class WebFileEntry {
         return entries.map(e => [...e]).flat();
     }
 
-    static async fromDataTransfer(dt: DataTransfer, recursive: boolean): Promise<WebFileEntry[]> {
+    static async fromDataTransfer(dt: DataTransfer, recursive: boolean, debug = false): Promise<WebFileEntry[]> {
         const dtItems: DataTransferItem[] = [...dt.items];
         const files: File[] = [...dt.files];
 
         const fileSystemEntries: FileSystemEntry[] = await dtItemsToFileSystemEntries(dtItems);
-        console.log("[fileSystemEntries]:", fileSystemEntries);
+        if (debug) {
+            console.log("%c[FileInput]", cssText, "[fileSystemEntries]:", fileSystemEntries);
+        }
 
         const result: WebFileEntry[] = [];
         for (const fileSystemEntry of fileSystemEntries) {
             const file: File | undefined = files.shift();
             if (!file) {
-                console.warn("[fromDataTransfer] Empty files.shift");
+                console.warn("[FileInput] [fromDataTransfer] Empty files.shift");
                 break;
             }
             const wfe: WebFileEntry | null = await fromFileSystemEntry(fileSystemEntry, undefined, recursive, file);
@@ -129,14 +133,14 @@ export class WebFileEntry {
 
 async function fromFileSystemEntry(fsEntry: FileSystemEntry, parent: WebFileEntry | undefined, recursive = false, file: File): Promise<WebFileEntry | null> {
     if (fsEntry === null) { // drop from long path
-        console.error("[fromFileSystemEntry][error] FileSystemEntry is null", file);
+        console.error("[FileInput] [fromFileSystemEntry][error] FileSystemEntry is null", file);
     }
     if (fsEntry.isFile) {
         try {
             const file = await toFile(fsEntry as FileSystemFileEntry); // as
             return new WebFileEntry({file, type: "file", parent});
         } catch (e) { // For example, for long path \\?\M:\... // todo: recheck
-            console.error("[fromFileSystemEntry][error]", fsEntry.name, e);
+            console.error("[FileInput] [fromFileSystemEntry][error]", fsEntry.name, e);
             return null;
         }
     } else if (fsEntry.isDirectory && recursive) {
