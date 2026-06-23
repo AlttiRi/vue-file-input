@@ -30,7 +30,7 @@ const {
 .file-info {
   width: 100%;
   height: 100%;
-  display: flex;
+  display: grid;
   flex-direction: column;
   justify-content: center;
   max-width: 100%;
