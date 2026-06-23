@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import {getStateInstance, FileInput, FileInputSelectedInfo} from "../src/index.ts"; // "@alttiri/vue-file-input"
+import {
+  getStateInstance, FileInput, FileInputSelectedInfo, WebFileEntry
+} from "../src/index.ts"; // "@alttiri/vue-file-input"
 import {formatFileSizeWinLike} from "@alttiri/util-js";
-import {computed, onBeforeUnmount, ref} from "vue";
+import {onBeforeUnmount, reactive, ref, watch} from "vue";
 import {textStyle} from "./core.ts";
 
 
@@ -13,42 +15,48 @@ const state = getStateInstance({recursive: true, debug: true});
 globalThis.state = state;
 console.log("%c[Demo2] You can access `state` right here in console.", textStyle, state);
 
-const blobUrls = new Set<string>();
-const videSrc = computed((oldValue: string | undefined) => {
-  if (oldValue) {
-    URL.revokeObjectURL(oldValue);
-    blobUrls.delete(oldValue);
+// ---
+
+const mediaDefault = {
+  src: "",
+  isVideo: false,
+  isImage: false,
+};
+const media = reactive(mediaDefault);
+
+watch(state.fileEntries, () => {
+  if (media.src !== "") {
+    URL.revokeObjectURL(media.src);
+    Object.assign(media, mediaDefault);
   }
-  const file = state.fileEntries.value[0];
-  if (!file || !file.file.type.startsWith("video/")) {
-    return "";
+
+  const file: WebFileEntry = state.fileEntries.value[0];
+  if (!file) {
+    return;
   }
-  const blobUrl = URL.createObjectURL(file.file);
-  blobUrls.add(blobUrl);
-  return blobUrl;
+
+  const mimeType = file.file.type;
+  if (mimeType.startsWith("video/")) {
+    media.isVideo = true;
+  } else
+  if (mimeType.startsWith("image/")) {
+    media.isImage = true;
+  } else {
+    return;
+  }
+
+  media.src = URL.createObjectURL(file.file);
 });
 
-const imgSrc = computed((oldValue: string | undefined) => {
-  if (oldValue) {
-    URL.revokeObjectURL(oldValue);
-    blobUrls.delete(oldValue);
-  }
-  const file = state.fileEntries.value[0];
-  if (!file || !file.file.type.startsWith("image/")) {
-    return "";
-  }
-  const blobUrl = URL.createObjectURL(file.file);
-  blobUrls.add(blobUrl);
-  return blobUrl;
-});
 onBeforeUnmount(() => {
-  blobUrls.forEach((blobUrl) => {
-    URL.revokeObjectURL(blobUrl);
-  });
+  URL.revokeObjectURL(media.src);
 });
+
+// ---
 
 const dropZone      = ref(true);
 const limitDropZone = ref(false);
+
 </script>
 
 <template>
@@ -76,9 +84,11 @@ const limitDropZone = ref(false);
     </label>
     <hr v-if="dropZone">
 
+    <div v-if="!state.fileEntries.value.length">Select / Drop an image or a video.</div>
 
-    <video v-if="videSrc" :src="videSrc"></video>
-    <img v-if="imgSrc" :src="imgSrc" alt="image file preview"/>
+
+    <video v-if="media.isVideo" :src="media.src"></video>
+    <img   v-if="media.isImage" :src="media.src" alt="image file preview"/>
 
 
     <!-- multiple file from the drop -->

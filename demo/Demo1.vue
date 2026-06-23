@@ -10,7 +10,7 @@ const state = getStateInstance({recursive: true, debug: true});
 
 // @ts-ignore
 globalThis.state = state;
-console.log("`%c[Demo1] You can access `state` right here in console.`", textStyle, state);
+console.log("%c[Demo1] You can access `state` right here in console.", textStyle, state);
 
 
 watchEffect(() => {
