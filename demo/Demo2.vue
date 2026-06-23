@@ -22,7 +22,7 @@ const mediaDefault = {
   isVideo: false,
   isImage: false,
 };
-const media = reactive(mediaDefault);
+const media = reactive({...mediaDefault});
 
 watch(state.fileEntries, () => {
   if (media.src !== "") {
