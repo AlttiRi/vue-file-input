@@ -67,7 +67,7 @@ const limitDropZone = ref(false);
         :multiple="false"
         :accept="'video/*,image/*'"
         :global-drop-zone="dropZone"
-        :drop-zone-selector="dropZone && limitDropZone ? '#app': null"
+        :drop-zone-selector="dropZone && limitDropZone ? '[data-component=\'App\']': null"
     >
       <FileInputSelectedInfo :state="state"/>
     </FileInput>
@@ -78,14 +78,16 @@ const limitDropZone = ref(false);
       Global drop zone.
     </label>
     <hr>
-    <label v-if="dropZone">
-      <input type="checkbox" name="drop-selector" v-model="limitDropZone">
-      Limit global drop zone by <strong>`#app`</strong>.
-    </label>
-    <hr v-if="dropZone">
+    <div class="drop-zone-limiter" v-if="dropZone">
+      <label v-if="dropZone">
+        <input type="checkbox" name="drop-selector" v-model="limitDropZone">
+        Limit global drop zone by
+      </label><strong class="select-all">[data-component="App"]</strong>.
+      <hr>
+    </div>
+
 
     <div v-if="!state.fileEntries.value.length">Select / Drop an image or a video.</div>
-
 
     <video v-if="media.isVideo" :src="media.src"></video>
     <img   v-if="media.isImage" :src="media.src" alt="image file preview"/>
@@ -106,5 +108,8 @@ img, video {
 }
 .files {
   padding: 6px 0;
+}
+.select-all {
+  user-select: all;
 }
 </style>
