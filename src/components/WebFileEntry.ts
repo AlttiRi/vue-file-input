@@ -102,7 +102,7 @@ export class WebFileEntry {
         return [...this];
     }
 
-    static flat(entries: WebFileEntry[]): WebFileEntry[] {
+    static flat(entries: readonly WebFileEntry[]): WebFileEntry[] {
         return entries.map(e => [...e]).flat();
     }
 

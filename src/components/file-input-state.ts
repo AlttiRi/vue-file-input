@@ -1,4 +1,4 @@
-import {computed, ComputedRef, Ref, ref, toRaw, watchEffect} from "vue";
+import {computed, ComputedRef, Ref, ref, shallowRef, toRaw, watchEffect} from "vue";
 import {WebFileEntry} from "../index.ts";
 import {cssText} from "./core.ts";
 
@@ -62,16 +62,16 @@ export function getStateInstance(opts: StateOpts = {}): FileInputState {
     Object.assign(defaultOpts, opts);
     const {recursive, debug} = defaultOpts;
 
-    const fileEntries:  Ref<WebFileEntry[]>  = ref([]);
-    const files:        Ref<File[]>          = ref([]);
-    const inputElem:    Ref<HTMLFileInputElement | null> = ref(null);
-    const parsing:      Ref<boolean>                     = ref(false);
-    const dtItems:      Ref<DataTransferItem[]>          = ref([]);
-    const dataTransfer: Ref<DataTransfer | null>         = ref(null);
-    const dropHover:    Ref<boolean>         = ref(false);
-    const dropHoverItemCount: Ref<number>    = ref(0);
-    const dropHoverTypes:     Ref<string[]>  = ref([]);
-    const isNwDirectory:      Ref<boolean>   = ref(false);
+    const fileEntries = shallowRef<WebFileEntry[]>([]);
+    const files       = shallowRef<File[]>([]);
+    const inputElem   = shallowRef<HTMLFileInputElement | null>(null);
+    const dtItems        = shallowRef<DataTransferItem[]>([]);
+    const dataTransfer   = shallowRef<DataTransfer | null>(null);
+    const dropHoverTypes = shallowRef<string[]>([]);
+    const dropHoverItemCount = ref<number>(0);
+    const dropHover     = ref<boolean>(false);
+    const parsing       = ref<boolean>(false);
+    const isNwDirectory = ref<boolean>(false);
 
     const log = getLog(debug);
 
