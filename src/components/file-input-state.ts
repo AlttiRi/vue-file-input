@@ -1,4 +1,4 @@
-import {computed, ComputedRef, DeepReadonly, readonly, Ref, ref, toRaw, watchEffect} from "vue";
+import {computed, ComputedRef, Ref, ref, toRaw, watchEffect} from "vue";
 import {WebFileEntry} from "../index.ts";
 import {cssText} from "./core.ts";
 
@@ -27,8 +27,8 @@ export type FileInputStatePrivate = {
 }
 
 export type FileInputState = {
-    /** Readonly `Ref` list of `WebFileEntry` items. */
-    fileEntries: DeepReadonly<Ref<WebFileEntry[]>>,
+    /** `Ref` of Readonly list of `WebFileEntry` items. */
+    fileEntries: Ref<Readonly<WebFileEntry[]>>,
     /** Clear file selecting. */
     clearInput(): void,
     /** Things for advanced use. */
@@ -156,7 +156,7 @@ export function getStateInstance(opts: StateOpts = {}): FileInputState {
     }
 
     return {
-        fileEntries: readonly(fileEntries),
+        fileEntries,
         clearInput,
         private: {
             dropHover, dropHoverItemCount, dropHoverTypes,

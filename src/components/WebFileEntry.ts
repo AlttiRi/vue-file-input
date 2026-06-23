@@ -14,16 +14,20 @@ type WebFileEntryConstructorInit = {
 };
 
 export class WebFileEntry {
+    /** A usual `File` object.
+     *
+     * In NW.js `File` also has `path` property. */
     public readonly   file: FileWithPath | File;
+    /** Just `"file"` or `"folder"`. Not MIME type. */
     public readonly   type: WebFileEntryType;
     public readonly parent: WebFileEntry   | undefined;
-    public        children: WebFileEntry[] | undefined;
+    private      _children: WebFileEntry[] | undefined;
     private readonly _name: string | undefined;
     private   _contentSize: number | undefined;
     constructor({file, type, name, parent}: WebFileEntryConstructorInit) {
         this.file = file;
         this.type = type;
-        if (name) {
+        if (name) { // optional? // todo: recheck
             this._name = name;
         }
         if (parent) {
@@ -41,12 +45,16 @@ export class WebFileEntry {
     }
 
     private addChild(entry: WebFileEntry) {
-        if (!this.children) {
+        if (!this._children) {
             /** `undefined` if there is no child */
-            this.children = [];
+            this._children = [];
         }
-        this.children.push(entry);
+        this._children.push(entry);
         this.increaseContentSize(entry.size);
+    }
+
+    get children(): Readonly<WebFileEntry[]> | undefined {
+        return this._children;
     }
 
     private increaseContentSize(size: number) {
@@ -83,8 +91,8 @@ export class WebFileEntry {
 
     *[Symbol.iterator](): Generator<WebFileEntry> {
         yield this;
-        if (this.children) {
-            for (const child of this.children) {
+        if (this._children) {
+            for (const child of this._children) {
                 yield * child;
             }
         }
