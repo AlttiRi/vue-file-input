@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {getStateInstance, FileInput, WebFileEntry} from "../src/index.ts"; // "@alttiri/vue-file-input"
+import {getStateInstance, FileInput, WebFileEntry} from "../src"; // "@alttiri/vue-file-input"
 import {formatFileSizeWinLike} from "@alttiri/util-js";
 import {computed, onBeforeUnmount, watchEffect} from "vue";
 import {textStyle} from "./core.ts";

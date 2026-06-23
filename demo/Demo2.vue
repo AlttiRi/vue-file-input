@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import {
   getStateInstance, FileInput, FileInputSelectedInfo, WebFileEntry
-} from "../src/index.ts"; // "@alttiri/vue-file-input"
+} from "../src"; // "@alttiri/vue-file-input"
 import {formatFileSizeWinLike} from "@alttiri/util-js";
-import {onBeforeUnmount, reactive, ref, watch} from "vue";
+import {onBeforeUnmount, ref} from "vue";
 import {textStyle} from "./core.ts";
+import MediaPreview from "./MediaPreview.vue";
 
 
 console.log("%c[Demo2] The demo is opened.", textStyle);
@@ -19,41 +20,6 @@ onBeforeUnmount(() => { // @ts-ignore
 });
 
 // ---
-
-const mediaDefault = {
-  src: "",
-  isVideo: false,
-  isImage: false,
-};
-const media = reactive({...mediaDefault});
-
-watch(state.fileEntries, () => {
-  if (media.src !== "") {
-    URL.revokeObjectURL(media.src);
-    Object.assign(media, mediaDefault);
-  }
-
-  const file: WebFileEntry = state.fileEntries.value[0];
-  if (!file) {
-    return;
-  }
-
-  const mimeType = file.file.type;
-  if (mimeType.startsWith("video/")) {
-    media.isVideo = true;
-  } else
-  if (mimeType.startsWith("image/")) {
-    media.isImage = true;
-  } else {
-    return;
-  }
-
-  media.src = URL.createObjectURL(file.file);
-});
-
-onBeforeUnmount(() => {
-  URL.revokeObjectURL(media.src);
-});
 
 // ---
 
@@ -91,10 +57,7 @@ const limitDropZone = ref(false);
 
 
     <div v-if="!state.fileEntries.value.length">Select / Drop an image or a video.</div>
-
-    <video v-if="media.isVideo" :src="media.src"></video>
-    <img   v-if="media.isImage" :src="media.src" alt="image file preview"/>
-
+    <MediaPreview :state/>
 
     <!-- multiple file from the drop -->
     <div class="files" v-if="state.fileEntries.value.length > 1">
@@ -105,16 +68,19 @@ const limitDropZone = ref(false);
 </template>
 
 <style scoped>
-[data-component=FileInput] {
+[data-component="FileInput"] {
   min-height: 42px;
 }
-img, video {
+
+[data-component="MediaPreview"]::v-deep(img, video) {
   min-width: 480px;
   max-width: 100%;
 }
+
 .files {
   padding: 6px 0;
 }
+
 .select-all {
   user-select: all;
 }
