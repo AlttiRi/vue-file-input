@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {
   ref, toRefs, onMounted, computed, onBeforeUnmount, watchEffect,
-  Ref, ComputedRef
+  Ref, ComputedRef, watch
 } from "vue";
 import FileInputDefault           from "./FileInputDefault.vue";
 import FileInputDefaultHoverModal from "./FileInputDefaultHoverModal.vue";
@@ -165,6 +165,17 @@ function onKeyDown(event: KeyboardEvent) {
     fileInputElem.value?.querySelector("label")?.click();
   }
 }
+
+watch(dropHover, () => {
+  if (!dropZoneSelector.value || !dropZone.value) {
+    return;
+  }
+  if (dropHover.value) {
+    dropZone.value.classList.add("drop-hover"); // todo?: make configurable
+  } else {
+    dropZone.value.classList.remove("drop-hover");
+  }
+});
 </script>
 
 <template>
