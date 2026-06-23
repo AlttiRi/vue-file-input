@@ -23,9 +23,8 @@ const {
 <style scoped>
 .c-FileInputSelectedInfo {
   display: flex;
-  place-content: center;
-  width: 100%;
-  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .file-info {

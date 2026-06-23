@@ -1,16 +1,28 @@
 <template>
   <div class="c-FileInputDefault" data-component="FileInputDefault">
-    <span class="content hover" v-if="state.private.dropHover.value">
+    <span
+        v-if="state.private.dropHover.value"
+        class="content hover"
+        data-slot="hover"
+    >
       <slot name="hover">
         <FileInputDefaultHoverText :state="state"/>
       </slot>
     </span>
-    <span class="content selected" v-else-if="state.private.file.value && !state.private.parsing.value">
+    <span
+        v-else-if="state.private.file.value && !state.private.parsing.value"
+        class="content selected"
+        data-slot="selected"
+    >
       <slot name="selected">
         <FileInputDefaultText :state="state"/>
       </slot>
     </span>
-    <span class="content prompt" v-else>
+    <span
+        v-else
+        class="content prompt"
+        data-slot="prompt"
+    >
       <slot name="prompt">
         <FileInputDefaultText :state="state"/>
       </slot>

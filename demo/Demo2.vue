@@ -14,6 +14,9 @@ const state = getStateInstance({recursive: true, debug: true});
 // @ts-ignore
 globalThis.state = state;
 console.log("%c[Demo2] You can access `state` right here in console.", textStyle, state);
+onBeforeUnmount(() => { // @ts-ignore
+  delete globalThis.state;
+});
 
 // ---
 
@@ -102,6 +105,9 @@ const limitDropZone = ref(false);
 </template>
 
 <style scoped>
+[data-component=FileInput] {
+  min-height: 42px;
+}
 img, video {
   min-width: 480px;
   max-width: 100%;

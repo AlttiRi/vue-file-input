@@ -184,14 +184,18 @@ function onKeyDown(event: KeyboardEvent) {
              :nwdirectory="nwdirectory ? '' : undefined"
              ref="templateInputElem"
       >
-      <slot>
-        <FileInputDefault :state="state"/>
-      </slot>
+      <div class="slot" data-slot="default">
+        <slot>
+          <FileInputDefault :state="state"/>
+        </slot>
+      </div>
     </label>
     <teleport to="body">
-      <slot name="modal">
-        <FileInputDefaultHoverModal :state="state"/>
-      </slot>
+      <div class="slot" data-slot="modal">
+        <slot name="modal">
+          <FileInputDefaultHoverModal :state="state"/>
+        </slot>
+      </div>
     </teleport>
   </div>
 </template>
@@ -210,9 +214,17 @@ input {
   display: none;
 }
 
+.slot {
+  display: contents;
+}
+
 .c-FileInput {
-  width:  100%;
-  height: 100%;
+  display: grid;
+}
+
+label {
+  display: contents;
+  cursor: pointer;
 }
 
 .c-FileInput {

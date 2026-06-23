@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {getStateInstance, FileInput, WebFileEntry} from "../src/index.ts"; // "@alttiri/vue-file-input"
 import {formatFileSizeWinLike} from "@alttiri/util-js";
-import {computed, watchEffect} from "vue";
+import {computed, onBeforeUnmount, watchEffect} from "vue";
 import {textStyle} from "./core.ts";
 
 
@@ -12,6 +12,9 @@ const state = getStateInstance({recursive: true, debug: true});
 // @ts-ignore
 globalThis.state = state;
 console.log("%c[Demo1] You can access `state` right here in console.", textStyle, state);
+onBeforeUnmount(() => { // @ts-ignore
+  delete globalThis.state;
+});
 
 
 watchEffect(() => {
@@ -72,6 +75,9 @@ const recCount = computed(() => {
 </template>
 
 <style scoped>
+[data-component=FileInput] {
+  min-height: 42px;
+}
 pre {
   display: inline;
 }
