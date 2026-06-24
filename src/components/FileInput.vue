@@ -5,7 +5,7 @@ import {
 } from "vue";
 import FileInputDefault           from "./FileInputDefault.vue";
 import FileInputDefaultHoverModal from "./FileInputDefaultHoverModal.vue";
-import {FileInputState, HTMLFileInputElement} from "../index.ts";
+import type {FileInputState, HTMLFileInputElement} from "./file-input-state.ts";
 
 
 const templateInputElem: Ref<HTMLFileInputElement | null> = ref(null);

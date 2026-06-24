@@ -1,5 +1,5 @@
 import {computed, ComputedRef, Ref, ref, shallowRef, toRaw, watchEffect} from "vue";
-import {WebFileEntry} from "../index.ts";
+import {WebFileEntry} from "./WebFileEntry.ts";
 import {cssText} from "./core.ts";
 
 /** Type for `input` element with exactly `[type="file"]`. */

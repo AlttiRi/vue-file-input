@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {FileInputState} from "./file-input-state.ts";
+import type {FileInputState} from "./file-input-state.ts";
 
 defineProps<{
   state: FileInputState,

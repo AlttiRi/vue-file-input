@@ -12,7 +12,8 @@
 
 <script setup lang="ts">
 import {computed} from "vue";
-import {FileInputState, WebFileEntry} from "../index.ts";
+import type {FileInputState} from "./file-input-state.ts";
+import type {WebFileEntry}   from "./WebFileEntry.ts";
 
 const props = defineProps<{state: FileInputState}>();
 const {

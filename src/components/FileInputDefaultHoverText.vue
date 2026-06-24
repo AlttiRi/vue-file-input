@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import {computed} from "vue";
-import {FileInputState} from "../index.ts";
+import type {FileInputState} from "./file-input-state.ts";
 
 const props = defineProps<{state: FileInputState}>();
 const {
